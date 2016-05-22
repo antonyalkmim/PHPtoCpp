@@ -13,33 +13,52 @@ int main(int argc, char* argv[]) {
     ifstream file(filename); //arquivo php a ser convertido
     ofstream outfile(filename + ".cpp"); //arquivo .cpp com codigo convertido de php para cpp
 
-    string inLine; //Cada de linha do arquivo php
-    string outLine; //cada linha CPP convertida
+    transpiler tp;
+
+    string token = "";
+    string line = "";
+    char aux; //ler cada caractere
 
     if(file.is_open()){
 
-        while(getline(file, inLine)){
-            cout << inLine << endl;
+        while(!file.eof()){
 
-            /** TODO Identificar os tokens da linha atual
-             *  Identificar operacao:
-             *   :=> declaracao de variavel
-             *   :=> aritimetica
-             *   :=> condicional
-             *   :=> entrada de dados (atraves de $_GET/$_POST/$_REQUEST)
-             *   :=> impressao de dados
-             *   :=> remover comentarios
-             *
-             *   TIPOS DE DADOS ESTARAO ESPECIFICADOS COM COMENTARIOS APOS A SUA DECLARACAO
-             *   EX:
-             *      $str = "foo"; //string
-             *      $integer = 1; //int
-             *      $floatVar = 1.2; //float
-             *      $doubleVar = 1.123456789; //double
-             */
+            file >> noskipws >> aux; //ler char por char
+
+            /* Quando encontrar um espaco em branco identifica o final de um token */
+            if(aux == ' ' || aux == '\n'){
+
+                /**
+                 * Avaliar a o que o token se refere
+                 *  Variavel
+                 *  Operador
+                 *  Symbolo
+                 *  Palavra Chave
+                 */
+
+                cout << token << " ";
+                token.clear();
+            }
+            else if (aux == '"') { //string
+                token.push_back(aux);
+
+                file >> noskipws >> aux;
+                token.push_back(aux);
+                while (aux != '"') {
+                    file >> noskipws >> aux;
+                    token.push_back(aux);
+                }
+
+                cout << token << " ";
+                token.clear();
+            }
+            else {
+                token.push_back(aux);
+            }
         }
-
         file.close();
+    }else{
+        cout << "Erro ao tentar abrir arquivo: " << filename << endl;
     }
 
 

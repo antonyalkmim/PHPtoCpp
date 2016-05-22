@@ -5,11 +5,15 @@
 #ifndef PHPTOCPP_TRANSPILER_H
 #define PHPTOCPP_TRANSPILER_H
 
+#include <iostream>
+#include <map>
+#include <string>
+
+using namespace std;
 
 class transpiler {
-
 public:
-    static char *keywords[] = {"<?php", "?>", "echo", "if"};
+    transpiler();
 };
 
 
