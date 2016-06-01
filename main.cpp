@@ -36,7 +36,24 @@ int main(int argc, char* argv[]) {
                  *  Palavra Chave
                  */
 
+                /* Operators */
+                if(tp.isOperator(token)){
+                    cout << " /* operador */ ";
+                }
+
+                /* Keyword */
+                if(tp.isKeyword(token)){
+                    cout << " /* Keyword */ ";
+                }
+
+                /* Variable */
+                if(tp.isVariable(token)){
+                    cout << " /* var */ ";
+                }
+
                 cout << token << " ";
+                if(aux == '\n') cout << endl;
+
                 token.clear();
             }
             else if (aux == '"') { //string
