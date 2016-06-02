@@ -19,9 +19,12 @@ Will generate a ```index.php.cpp``` file.
 **PHP** infile:
 ```php
 <?php
-    $foo = "bar ";
-    $age = 21;
-    echo $foo . $age;
+    $foo = "bar " ; //string
+    $age = 21 ; //int
+
+    $enter = $_POST['enter'] ; //string
+
+    echo $foo;
 ?>
 ```
 
@@ -33,6 +36,8 @@ Will generate a ```index.php.cpp``` file.
 int main(){
     std::string foo = "bar ";
     int age = 21;
+    string enter;
+    cin >> enter;
     std::cout << foo << std::age;
 }
 ```

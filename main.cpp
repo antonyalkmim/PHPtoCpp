@@ -16,8 +16,9 @@ int main(int argc, char* argv[]) {
     transpiler tp;
 
     string token = "";
-    string line = "";
     char aux; //ler cada caractere
+
+    vector<string> expression;
 
     if(file.is_open()){
 
@@ -28,30 +29,73 @@ int main(int argc, char* argv[]) {
             /* Quando encontrar um espaco em branco identifica o final de um token */
             if(aux == ' ' || aux == '\n'){
 
-                /**
-                 * Avaliar a o que o token se refere
-                 *  Variavel
-                 *  Operador
-                 *  Symbolo
-                 *  Palavra Chave
-                 */
+                if(tp.isOperator(token)){ /* Operators */
+                    if(!expression.empty()){
+                        expression.push_back(token);
 
-                /* Operators */
-                if(tp.isOperator(token)){
-                    cout << " /* operador */ ";
+                        if(token == ")"){
+                            for(string exp : expression)
+                                cout << exp << " ";
+                            expression.clear();
+                        }
+                    }
+                    else{
+                        cout << token << " ";
+                    }
+                }
+                else if(tp.isKeyword(token)){ /* Keyword */
+                    if(token == "<?php"){
+                        cout << tp.getLibraries() << endl;
+                        cout << "using namespace std;" << endl << endl;
+                        cout << tp.keywords[token] << endl;
+                    }
+                    else if(token == "if" || !expression.empty()) {
+                        expression.push_back(token);
+                    }
+                    else{
+                        cout << tp.keywords[token] << " ";
+                    }
+                }
+                else if(tp.isVariable(token)){ /* Variable */
+                    expression.push_back(token.substr(1, token.length()));
+                }
+                else if(tp.isType(token)){ /* Final de expressao */
+                    bool ioEXP = false;
+
+                    //verificar se existe expressao IO
+                    for(string exp : expression){
+                        if(tp.isIO(exp)){
+                            ioEXP = true;
+                        }
+                    }
+
+                    if(ioEXP){
+                        //prints: type varName;
+                        cout << token.substr(2, token.length()) << " " << expression[0] << ";" << endl;
+
+                        //prints: cin >> ...
+                        cout << "cin >> " << expression[0] << ";" << endl;
+
+                        expression.clear();
+                    }else{
+                        cout << token.substr(2, token.length()) << " ";
+                        for(string exp : expression)
+                            cout << exp << " ";
+
+                        expression.clear();
+                    }
+
+                }
+                else{
+                    if(!expression.empty()){
+                        expression.push_back(token);
+                    }else{
+                        cout << token << " ";
+                    }
+
                 }
 
-                /* Keyword */
-                if(tp.isKeyword(token)){
-                    cout << " /* Keyword */ ";
-                }
-
-                /* Variable */
-                if(tp.isVariable(token)){
-                    cout << " /* var */ ";
-                }
-
-                cout << token << " ";
+//                cout << token << " ";
                 if(aux == '\n') cout << endl;
 
                 token.clear();
@@ -66,7 +110,13 @@ int main(int argc, char* argv[]) {
                     token.push_back(aux);
                 }
 
-                cout << token << " ";
+                if(!expression.empty()){
+                    expression.push_back(token);
+                }
+                else{
+                    cout << token << " ";
+                }
+
                 token.clear();
             }
             else {

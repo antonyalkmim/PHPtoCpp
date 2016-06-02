@@ -1,3 +1,4 @@
 <?php
-    $foo = "bar"; //string
+    $foo = "bar" ; //string
+    if (true) { }
 ?>
