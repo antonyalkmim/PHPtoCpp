@@ -5,6 +5,7 @@ $bar = 1 + 2 ; //int
 
 if ( $foo ) {
     $fb = $bar ; //int
+    echo $fb ;
 }
 
 ?>

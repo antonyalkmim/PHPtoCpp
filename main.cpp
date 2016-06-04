@@ -8,8 +8,8 @@ using namespace std;
 
 int main(int argc, char* argv[]) {
 
-    string filename = argc > 1 ? argv[1] : "index.php"; //nome do arquivo a ser convertido
-
+    //string filename = argc > 1 ? argv[1] : "index.php"; //nome do arquivo a ser convertido
+    string filename = "/home/antonyalkmim/workspace/PHPtoCpp/index.php";
     ifstream file(filename); //arquivo php a ser convertido
     ofstream outfile(filename + ".cpp"); //arquivo .cpp com codigo convertido de php para cpp
 
@@ -19,6 +19,7 @@ int main(int argc, char* argv[]) {
     char aux; //ler cada caractere
 
     vector<string> expression;
+//    vector<string> outExpression;
 
     if(file.is_open() && outfile.is_open()){
 
@@ -27,7 +28,7 @@ int main(int argc, char* argv[]) {
             file >> noskipws >> aux; //ler char por char
 
             /* Quando encontrar um espaco em branco identifica o final de um token */
-            if(aux == ' ' || aux == '\n'){
+            if(aux == ' ' || aux == '\n' || aux == '\0'){
 
                 if(tp.isOperator(token)){ /* Operators */
                     if(!expression.empty()){
@@ -51,6 +52,9 @@ int main(int argc, char* argv[]) {
                     }
                     else if(token == "if" || !expression.empty()) {
                         expression.push_back(token);
+                    }
+                    else if(token == "echo"){
+                        expression.push_back(tp.keywords[token]);
                     }
                     else{
                         outfile << tp.keywords[token] << " ";
@@ -88,9 +92,18 @@ int main(int argc, char* argv[]) {
                 else{
                     if(!expression.empty()){
                         expression.push_back(token);
-                    }else{
+                    }
+                    else{
                         outfile << token << " ";
                     }
+
+                    if(token == ";" && expression[0] == tp.keywords["echo"]){
+                        for(string exp : expression)
+                            outfile << exp << " ";
+                        expression.clear();
+                    }
+
+
                 }
 
                 if(aux == '\n')

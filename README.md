@@ -56,15 +56,16 @@ int main(){
 - Datatypes should be declared in the final of variable declaration the line:
   - Ex: ```$foo = 1 ; //int```
   - Datatypes: ```//int```,```//float```, ```//double```, ```//bool```, ```//string```
- - Input data has to be: ```$_REQUEST['name']```, ```$_POST['name']``` or ```$_GET['name']```, Example:
-   - ```$data = $_POST['data'] ; //string``` will be convert to ```string data; cin >> data;```
-  - It is included unecessary c++ libraries when converts.
+- Input data has to be: ```$_REQUEST['name']```, ```$_POST['name']``` or ```$_GET['name']```, Example:
+  - ```$data = $_POST['data'] ; //string``` will be convert to ```string data; cin >> data;```
+- It is included unecessary c++ libraries when converts.
+- It is necessary to add a space after ```?>```
 
 
 License
 ----
 WTFPL
 
-![alt tag](https://github.com/antonyalkmim/PHPtoCpp/its_free.jpg)
+![alt tag](https://github.com/antonyalkmim/PHPtoCpp/blob/master/its_free.jpg)
 
 **It's free**
