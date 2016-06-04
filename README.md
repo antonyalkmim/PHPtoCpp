@@ -22,6 +22,7 @@ Will generate a ```index.php.cpp``` file.
 
     if ( $foo ) {
         $fb = $bar ; //int
+        echo $fb ;
     }
 ?>
 ```
@@ -45,6 +46,7 @@ int main(){
 
     if ( foo ) {
         int fb = bar ;
+        cout << fb ;
     }
 }
 ```
