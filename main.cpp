@@ -20,7 +20,7 @@ int main(int argc, char* argv[]) {
 
     vector<string> expression;
 
-    if(file.is_open()){
+    if(file.is_open() && outfile.is_open()){
 
         while(!file.eof()){
 
@@ -35,25 +35,25 @@ int main(int argc, char* argv[]) {
 
                         if(token == ")"){
                             for(string exp : expression)
-                                cout << exp << " ";
+                                outfile << exp << " ";
                             expression.clear();
                         }
                     }
                     else{
-                        cout << token << " ";
+                        outfile << token << " ";
                     }
                 }
                 else if(tp.isKeyword(token)){ /* Keyword */
                     if(token == "<?php"){
-                        cout << tp.getLibraries() << endl;
-                        cout << "using namespace std;" << endl << endl;
-                        cout << tp.keywords[token] << endl;
+                        outfile << tp.getLibraries() << endl;
+                        outfile << "using namespace std;" << endl << endl;
+                        outfile << tp.keywords[token] << endl;
                     }
                     else if(token == "if" || !expression.empty()) {
                         expression.push_back(token);
                     }
                     else{
-                        cout << tp.keywords[token] << " ";
+                        outfile << tp.keywords[token] << " ";
                     }
                 }
                 else if(tp.isVariable(token)){ /* Variable */
@@ -71,32 +71,30 @@ int main(int argc, char* argv[]) {
 
                     if(ioEXP){
                         //prints: type varName;
-                        cout << token.substr(2, token.length()) << " " << expression[0] << ";" << endl;
+                        outfile << token.substr(2, token.length()) << " " << expression[0] << ";" << endl;
 
                         //prints: cin >> ...
-                        cout << "cin >> " << expression[0] << ";" << endl;
+                        outfile << "cin >> " << expression[0] << ";" << endl;
 
                         expression.clear();
                     }else{
-                        cout << token.substr(2, token.length()) << " ";
+                        outfile << token.substr(2, token.length()) << " ";
                         for(string exp : expression)
-                            cout << exp << " ";
+                            outfile << exp << " ";
 
                         expression.clear();
                     }
-
                 }
                 else{
                     if(!expression.empty()){
                         expression.push_back(token);
                     }else{
-                        cout << token << " ";
+                        outfile << token << " ";
                     }
-
                 }
 
-//                cout << token << " ";
-                if(aux == '\n') cout << endl;
+                if(aux == '\n')
+                    outfile << endl;
 
                 token.clear();
             }
@@ -114,7 +112,7 @@ int main(int argc, char* argv[]) {
                     expression.push_back(token);
                 }
                 else{
-                    cout << token << " ";
+                    outfile << token << " ";
                 }
 
                 token.clear();
@@ -123,6 +121,7 @@ int main(int argc, char* argv[]) {
                 token.push_back(aux);
             }
         }
+        cout << "File " << filename << " was convert to PHP in " << filename << ".cpp" << endl;
         file.close();
     }else{
         cout << "Erro ao tentar abrir arquivo: " << filename << endl;
