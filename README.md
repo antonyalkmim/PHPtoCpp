@@ -1,58 +1,70 @@
 # PHPtoCpp
 
-PHPtoCpp it is a simple transpiler that transforms your **PHP** code to **C++**.
-
-### TODO
-- Identifier Tokens, keywords and datatypes
-- Assignments (=, .)
-- Arithmetic (+, -, *, /, %)
-- Booleans (<, >, >=, <=, ==, !=, ||, &&)
+PHPtoCpp it is a simple transpiler that transforms your **PHP** file to **C++** file.
 
 ### Usage
 ```sh
-$ phptocpp index.php
+$ git clone https://github.com/antonyalkmim/PHPtoCpp
+$ cd PHPtoCpp
+$ cmake CMakeLists.txt
+$ make
+$ PHPtoCpp index.php
 ```
 Will generate a ```index.php.cpp``` file.
 
 ### Example
 
-**PHP** infile:
+**PHP** infile( ```index.php``` ):
 ```php
 <?php
-    $foo = "bar " ; //string
-    $age = 21 ; //int
+    $foo = $_POST['foo'] ; //string
+    $bar = 1 + 2 ; //int
 
-    $enter = $_POST['enter'] ; //string
-
-    echo $foo;
+    if ( $foo ) {
+        $fb = $bar ; //int
+    }
 ?>
 ```
 
-**C++** outfile:
+**C++** outfile (```index.php.cpp```):
 ```cpp
 #include <iostream>
 #include <string>
+#include <cmath>
+#include <cstdio>
+#include <ctime>
+#include <cstdlib>
+
+using namespace std;
 
 int main(){
-    std::string foo = "bar ";
-    int age = 21;
-    string enter;
-    cin >> enter;
-    std::cout << foo << std::age;
+    string foo;
+    cin >> foo;
+
+    int bar = 1 + 2 ;
+
+    if ( foo ) {
+        int fb = bar ;
+    }
 }
 ```
 
 
-
-### Status
- - Developing
-
-
+### Issues
+- It is converting only sequencial and simple PHP commands
+- All tokens should be separeted by a single space ```if ( true ) { ... } ```
+- Datatypes should be declared in the final of variable declaration the line:
+  - Ex: ```$foo = 1 ; //int```
+  - Datatypes: ```//int```,```//float```, ```//double```, ```//bool```, ```//string```
+ - Input data has to be: ```$_REQUEST['name']```, ```$_POST['name']``` or ```$_GET['name']```, Example:
+   - ```$data = $_POST['data'] ; //string``` will be convert to ```string data; cin >> data;```
+  - It is included unecessary c++ libraries when converts.
 
 
 License
 ----
 WTFPL
 
+![alt tag](https://github.com/antonyalkmim/PHPtoCpp/its_free.jpg)
 
 **It's free**
