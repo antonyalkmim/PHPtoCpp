@@ -56,9 +56,9 @@ int main(){
 - Datatypes should be declared in the final of variable declaration the line:
   - Ex: ```$foo = 1 ; //int```
   - Datatypes: ```//int```,```//float```, ```//double```, ```//bool```, ```//string```
- - Input data has to be: ```$_REQUEST['name']```, ```$_POST['name']``` or ```$_GET['name']```, Example:
+- Input data has to be: ```$_REQUEST['name']```, ```$_POST['name']``` or ```$_GET['name']```, Example:
   - ```$data = $_POST['data'] ; //string``` will be convert to ```string data; cin >> data;```
- - It is included unecessary c++ libraries when converts.
+- It is included unecessary c++ libraries when converts.
 
 
 License
