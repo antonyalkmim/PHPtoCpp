@@ -57,14 +57,14 @@ int main(){
   - Ex: ```$foo = 1 ; //int```
   - Datatypes: ```//int```,```//float```, ```//double```, ```//bool```, ```//string```
  - Input data has to be: ```$_REQUEST['name']```, ```$_POST['name']``` or ```$_GET['name']```, Example:
-   - ```$data = $_POST['data'] ; //string``` will be convert to ```string data; cin >> data;```
-  - It is included unecessary c++ libraries when converts.
+  - ```$data = $_POST['data'] ; //string``` will be convert to ```string data; cin >> data;```
+ - It is included unecessary c++ libraries when converts.
 
 
 License
 ----
 WTFPL
 
-![alt tag](https://github.com/antonyalkmim/PHPtoCpp/its_free.jpg)
+![alt tag](https://github.com/antonyalkmim/PHPtoCpp/blob/master/its_free.jpg)
 
 **It's free**
