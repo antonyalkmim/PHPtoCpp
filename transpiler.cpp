@@ -35,6 +35,9 @@ transpiler::transpiler() {
     keywords["$_POST"] = "cin >> ";
     keywords["true"] = "true";
     keywords["false"] = "false";
+
+    //TODO:jumbs
+    keywords["."] = "+";
 }
 
 bool transpiler::isOperator(string token) {

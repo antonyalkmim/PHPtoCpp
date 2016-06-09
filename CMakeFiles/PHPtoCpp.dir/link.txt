@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11   CMakeFiles/PHPtoCpp.dir/main.cpp.o CMakeFiles/PHPtoCpp.dir/transpiler.cpp.o CMakeFiles/PHPtoCpp.dir/node.cpp.o CMakeFiles/PHPtoCpp.dir/list.cpp.o  -o PHPtoCpp 

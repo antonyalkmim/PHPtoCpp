@@ -18,6 +18,7 @@ public:
     map<string, string> keywords; // if, echo
     vector<string> libs; //#include <string> .....
     vector<string> types; // int, float ....
+    vector<string> variables;
 public:
     transpiler();
     string getLibraries();

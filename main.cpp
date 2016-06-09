@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <algorithm>
 #include "transpiler.h"
 
 using namespace std;
@@ -60,7 +61,8 @@ int main(int argc, char* argv[]) {
                     }
                 }
                 else if(tp.isVariable(token)){ /* Variable */
-                    expression.push_back(token.substr(1, token.length()));
+                    string variable = token.substr(1, token.length());
+                    expression.push_back(variable);
                 }
                 else if(tp.isType(token)){ /* Final de expressao */
                     bool ioEXP = false;
@@ -81,7 +83,11 @@ int main(int argc, char* argv[]) {
 
                         expression.clear();
                     }else{
-                        outfile << token.substr(2, token.length()) << " ";
+                        if(find(tp.variables.begin(), tp.variables.end(), expression[0]) == tp.variables.end()) {
+                            tp.variables.push_back(expression[0]);
+                            outfile << token.substr(2, token.length()) << " ";
+                        }
+
                         for(string exp : expression)
                             outfile << exp << " ";
 
@@ -101,8 +107,6 @@ int main(int argc, char* argv[]) {
                             outfile << exp << " ";
                         expression.clear();
                     }
-
-
                 }
 
                 if(aux == '\n')

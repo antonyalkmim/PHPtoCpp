@@ -1,10 +1,13 @@
 <?php
 
-$foo = $_REQUEST['foo'] ; //string
-$bar = 1 + 2 ; //int
+$teste = 10 ; //int
 
-if ( $foo ) {
-    $fb = $bar ; //int
+if( $teste > 5 ) {
+    $teste = 2 ; //int
 }
+
+echo $teste ;
+$teste2 = 20 ; //int
+$teste = $teste2 + 3 ; //int
 
 ?>
