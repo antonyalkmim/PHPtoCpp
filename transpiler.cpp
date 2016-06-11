@@ -39,7 +39,8 @@ transpiler::transpiler() {
     //operators
     operators["."] = "+";
     operators["-"] = "-";
-    operators["/"] = "%";
+    operators["/"] = "/";
+    operators["%"] = "%";
     operators["*"] = "*";
     operators["*="] = "*=";
     operators["+="] = "+=";
