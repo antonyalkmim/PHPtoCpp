@@ -10,14 +10,17 @@ using namespace std;
 int main(){
 
  
-int teste = 10 ; 
+string foo = "foo"  ; 
+string bar;
+cin >> bar;
+
  
-if( teste > 5 ) { 
-    teste = 2 ; 
+if( foo == bar ) { 
+    foo = "FooBar"  ; 
 } 
  
-cout <<  teste ; 
-int teste2 = 20 ; 
-teste = teste2 + 3 ; 
+cout <<  foo ; 
  
-}  
+} 
+ 
+ 

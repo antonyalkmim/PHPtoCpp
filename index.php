@@ -1,13 +1,13 @@
 <?php
 
-$teste = 10 ; //int
+$foo = "foo" ; //string
+$bar = $_POST['bar'] ; //string
 
-if( $teste > 5 ) {
-    $teste = 2 ; //int
+if( $foo == $bar ) {
+    $foo = "FooBar" ; //string
 }
 
-echo $teste ;
-$teste2 = 20 ; //int
-$teste = $teste2 + 3 ; //int
+echo $foo ;
 
 ?>
+

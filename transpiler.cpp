@@ -36,18 +36,36 @@ transpiler::transpiler() {
     keywords["true"] = "true";
     keywords["false"] = "false";
 
-    //TODO:jumbs
-    keywords["."] = "+";
+    //operators
+    operators["."] = "+";
+    operators["-"] = "-";
+    operators["/"] = "%";
+    operators["*"] = "*";
+    operators["*="] = "*=";
+    operators["+="] = "+=";
+    operators["-="] = "-=";
+    operators["/="] = "/=";
+    operators[">"] = ">";
+    operators["<"] = "<";
+    operators["!"] = "!";
+    operators["&&"] = "&&";
+    operators["||"] = "||";
+    operators["=="] = "==";
+    operators["!="] = "!=";
+    operators["<="] = "<=";
+    operators[">="] = ">=";
+    operators["."] = "+";
+    operators[".="] = "+=";
+    operators["="] = "=";
+    //jumbs
+    operators["("] = "(";
+    operators[")"] = ")";
+    operators["}"] = "}";
+    operators["{"] = "{";
 }
 
 bool transpiler::isOperator(string token) {
-    vector<string> ops = {"+","-","/","%","*",
-                          "*=","+=","-=", "/=",
-                          ">","<","=","!",
-                          "&&", "||", "==", "!=", "<=", ">=",
-                          "(",")","{","}"};
-
-    return  find(ops.begin(), ops.end(), token) != ops.end();
+    return (operators.find(token) != operators.end());
 }
 
 bool transpiler::isKeyword(string token) {

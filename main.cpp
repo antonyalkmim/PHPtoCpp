@@ -32,7 +32,7 @@ int main(int argc, char* argv[]) {
 
                 if(tp.isOperator(token)){ /* Operators */
                     if(!expression.empty()){
-                        expression.push_back(token);
+                        expression.push_back(tp.operators[token]);
 
                         if(token == ")"){
                             for(string exp : expression)
@@ -41,7 +41,7 @@ int main(int argc, char* argv[]) {
                         }
                     }
                     else{
-                        outfile << token << " ";
+                        outfile << tp.operators[token] << " ";
                     }
                 }
                 else if(tp.isKeyword(token)){ /* Keyword */
