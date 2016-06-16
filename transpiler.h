@@ -8,7 +8,6 @@
 #include <iostream>
 #include <map>
 #include <string>
-#include "list.h"
 
 using namespace std;
 
