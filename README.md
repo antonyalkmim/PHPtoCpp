@@ -62,7 +62,7 @@ int main(){
   - ```$data = $_POST['data'] ; //string``` will be convert to ```string data; cin >> data;```
 - It is included unecessary c++ libraries when converts.
 - Variable names should be more then one character:
-  - ```$a = 1 ; // causa segmentation error```
+  - ```$a = 1 ; // segmentation error```
   - ```$aa = 1 ; // convert normally```
 
 
