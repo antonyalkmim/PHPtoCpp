@@ -61,6 +61,9 @@ int main(){
 - Input data has to be: ```$_REQUEST['name']```, ```$_POST['name']``` or ```$_GET['name']```, Example:
   - ```$data = $_POST['data'] ; //string``` will be convert to ```string data; cin >> data;```
 - It is included unecessary c++ libraries when converts.
+- Variable names should be more then one character:
+  - ```$a = 1 ; // causa segmentation error```
+  - ```$aa = 1 ; // convert normally```
 
 
 License
